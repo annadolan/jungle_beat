@@ -130,4 +130,20 @@ class JungleBeatTest < Minitest::Test
 
     assert_equal "tee dee dop", jb.to_string
   end
+
+  def test_can_control_rate_and_voice
+    jb = JungleBeat.new
+    jb.append("deep dop dop deep")
+    jb.rate = 100
+    assert_equal `say -r 100 -v Boing deep dop dop deep`, jb.play
+    jb.voice = "Alice"
+    assert_equal `say -r 100 -v Alice deep dop dop deep`, jb.play
+
+    jb.reset_rate
+    assert_equal `say -r 500 -v Alice deep dop dop deep`, jb.play
+    jb.reset_voice
+    assert_equal `say -r 500 -v Boing deep dop dop deep`, jb.play
+    
+
+  end
 end
