@@ -5,11 +5,10 @@ class LinkedList
 
   def initialize(data = nil)
     @head = Node.new(data)
-
-
   end
 
-  #adds a node with given data to beginning of list
+  #adds a node with given data to beginning of list,
+  #moves the rest of the list down
   def prepend(data)
     node = Node.new(data)
     node.next_node = @head
@@ -43,7 +42,6 @@ class LinkedList
       new_node.next_node = node.next_node
       node.next_node = new_node
     end
-
   end
 
   #returns the number of nodes currently in the list
@@ -69,9 +67,8 @@ class LinkedList
     until node.nil?
       string << "#{node.data} "
       node = node.next_node
-
     end
-    string.to_s.strip
+    string.strip
   end
 
   #finds nodes when given starting location and
@@ -93,10 +90,8 @@ class LinkedList
       find_string << "#{node.next_node.data} "
       num_count +=1
       node = node.next_node
-
     end
     find_string.strip
-
   end
 
   #checks for whether the list includes a node
@@ -116,7 +111,7 @@ class LinkedList
   def pop
       node = @head
       if node.data == nil
-        remove = nil
+        remove = ""
       else
         until node.next_node.next_node.nil?
         node = node.next_node
@@ -124,7 +119,6 @@ class LinkedList
         remove = node.next_node.data
         node.next_node = nil
       end
-
       remove
   end
 

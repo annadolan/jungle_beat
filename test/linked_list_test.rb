@@ -3,7 +3,7 @@ require "minitest/autorun"
 require "minitest/pride"
 
 class LinkedListTest < Minitest::Test
-    def test_head_nil
+  def test_head_nil
     list = LinkedList.new
 
     assert_equal nil, list.head.data
@@ -11,6 +11,7 @@ class LinkedListTest < Minitest::Test
 
   def test_append_one_node
     list = LinkedList.new
+
     list.append("doop")
 
     assert_equal "doop", list.head.data
@@ -18,6 +19,7 @@ class LinkedListTest < Minitest::Test
 
   def test_append_two_nodes
     list = LinkedList.new
+
     list.append("doop")
     list.append("deep")
 
@@ -27,6 +29,7 @@ class LinkedListTest < Minitest::Test
 
   def test_next_node_nil
     list = LinkedList.new
+
     list.append("doop")
 
     assert_equal nil, list.head.next_node
@@ -34,7 +37,6 @@ class LinkedListTest < Minitest::Test
 
   def test_count
     list = LinkedList.new
-
     assert_equal 0, list.count
 
     list.append("doop")
@@ -52,6 +54,8 @@ class LinkedListTest < Minitest::Test
 
   def test_list_to_string
     list = LinkedList.new
+    assert_equal "", list.to_string
+
     list.append("doop")
 
     assert_equal "doop", list.to_string
@@ -67,6 +71,7 @@ class LinkedListTest < Minitest::Test
     list.append("plop")
     list.append("suu")
     list.prepend("dop")
+
     node = list.head
 
     assert_equal "dop", node.data
@@ -74,6 +79,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "suu", node.next_node.next_node.data
 
     list.prepend("bop")
+
     node = list.head
 
     assert_equal "bop", node.data
@@ -81,6 +87,13 @@ class LinkedListTest < Minitest::Test
     assert_equal "plop", node.next_node.next_node.data
     assert_equal "suu", node.next_node.next_node.next_node.data
 
+  end
+
+  def test_prepend_to_empty_list
+    list = LinkedList.new
+    list.prepend("plop")
+
+    assert_equal "plop", list.head.data
   end
 
   def test_insert_to_location
@@ -100,6 +113,8 @@ class LinkedListTest < Minitest::Test
 
   def test_find_by_location_and_number
     list = LinkedList.new
+    assert_equal nil, list.find(2, 1)
+
     list.append("deep")
     list.append("woo")
     list.append("shi")
@@ -113,6 +128,8 @@ class LinkedListTest < Minitest::Test
 
   def test_check_for_include
     list = LinkedList.new
+    refute list.includes?("blop")
+
     list.append("deep")
     list.append("woo")
     list.append("shi")
@@ -127,7 +144,8 @@ class LinkedListTest < Minitest::Test
 
   def test_pop_last_node
     list = LinkedList.new
-    assert_equal nil, list.pop
+    assert_equal "", list.pop
+
     list.append("deep")
     list.append("woo")
     list.append("shi")
