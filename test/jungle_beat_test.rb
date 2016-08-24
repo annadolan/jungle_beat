@@ -4,7 +4,7 @@ require "minitest/pride"
 
 class JungleBeatTest < Minitest::Test
 
-  def test_append_multiple_nodes
+  def test_jb_append_multiple_nodes
     jb = JungleBeat.new
 
     assert_equal nil, jb.list.head.data
@@ -15,7 +15,7 @@ class JungleBeatTest < Minitest::Test
 
   end
 
-  def test_prepend_multiple_nodes
+  def test_jb_prepend_multiple_nodes
     jb = JungleBeat.new
 
     assert_equal nil, jb.list.head.data
@@ -23,6 +23,17 @@ class JungleBeatTest < Minitest::Test
     jb.prepend("deep doo ditt")
     assert_equal "deep", jb.list.head.data
     assert_equal "doo", jb.list.head.next_node.data
+  end
+
+  def test_jb_insert_multiple_nodes
+    jb = JungleBeat.new
+
+    assert_equal nil, jb.list.head.data
+
+    jb.append("dee dee dee")
+
+    jb.insert(1, "deep doo ditt")
+    assert_equal "dee deep doo ditt dee dee", jb.to_string
   end
 
   def test_jb_count
@@ -106,10 +117,10 @@ class JungleBeatTest < Minitest::Test
     assert_equal "deep doo ditt woo hoo shu", jb.to_string
     assert_equal 6, jb.count
     assert_equal 6, jb.list.count
-    jb.play
+    assert_equal `say -r 500 -v Boing deep doo ditt woo hoo shu`, jb.play
   end
 
-  def test_allowed_beat_append
+  def test_jb_allowed_beat_append
     jb = JungleBeat.new
     jb.append("Mississippi")
 
@@ -120,7 +131,7 @@ class JungleBeatTest < Minitest::Test
     assert_equal "tee dee dop", jb.to_string
   end
 
-  def test_allowed_beat_prepend
+  def test_jb_allowed_beat_prepend
     jb = JungleBeat.new
     jb.prepend("Mississippi")
 
@@ -131,7 +142,19 @@ class JungleBeatTest < Minitest::Test
     assert_equal "tee dee dop", jb.to_string
   end
 
-  def test_can_control_rate_and_voice
+  def test_jb_allowed_beat_insert
+    jb = JungleBeat.new
+    jb.append("doop deep dop")
+    jb.insert(0, "Mississippi")
+
+    assert_equal "doop deep dop", jb.to_string
+
+    jb.insert(1, "tee dee dop Oklahoma")
+
+    assert_equal "doop tee dee dop deep dop", jb.to_string
+  end
+
+  def test_jb_can_control_rate_and_voice
     jb = JungleBeat.new
     jb.append("deep dop dop deep")
     jb.rate = 100
@@ -143,7 +166,7 @@ class JungleBeatTest < Minitest::Test
     assert_equal `say -r 500 -v Alice deep dop dop deep`, jb.play
     jb.reset_voice
     assert_equal `say -r 500 -v Boing deep dop dop deep`, jb.play
-    
+
 
   end
 end

@@ -85,7 +85,7 @@ class LinkedListTest < Minitest::Test
 
   def test_insert_to_location
     list = LinkedList.new
-    list.append("plop")
+    list.insert(0, "plop")
     list.append("suu")
     list.prepend("dop")
 
