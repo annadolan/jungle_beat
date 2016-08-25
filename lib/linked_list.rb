@@ -74,11 +74,8 @@ class LinkedList
   #finds nodes when given starting location and
   #number of nodes desired
   def find(loc, num)
-    loc_counter = 0
     node = @head
-    until loc_counter == loc
-      node = node.next_node
-      loc_counter += 1
+  loc.times do node = node.next_node
       if node == nil
         return nil
       end
@@ -113,9 +110,7 @@ class LinkedList
       if node.data == nil
         remove = ""
       else
-        until node.next_node.next_node.nil?
-        node = node.next_node
-        end
+        node = node.next_node until node.next_node.next_node.nil?
         remove = node.next_node.data
         node.next_node = nil
       end

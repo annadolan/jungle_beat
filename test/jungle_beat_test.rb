@@ -168,7 +168,7 @@ class JungleBeatTest < Minitest::Test
     jb.append("deep dop dop deep")
 
     jb.rate = 100
-    
+
     assert_equal `say -r 100 -v Boing deep dop dop deep`, jb.play
 
     jb.voice = "Alice"
