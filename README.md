@@ -1,4 +1,6 @@
 #Jungle Beats
+##Project requirements at: https://github.com/turingschool/curriculum/blob/master/source/projects/jungle_beat.markdown
+
 This project is an implementation of a linked list in Ruby to make a simple drum machine. It creates a linked list that can be built on by appending, prepending, and inserting nodes into the list.
 There are additional functions for:
 * Counting the number of nodes in the linked list
